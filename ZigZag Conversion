@@ -1,0 +1,24 @@
+class Solution:
+    def convert(self, s, numRows):
+        # If only one row or string is too short
+        if numRows == 1 or numRows >= len(s):
+            return s
+        
+        # Create empty rows
+        rows = [""] * numRows
+        
+        current_row = 0
+        going_down = False
+        
+        # Traverse each character
+        for char in s:
+            rows[current_row] += char
+            
+            # Change direction when we reach top or bottom
+            if current_row == 0 or current_row == numRows - 1:
+                going_down = not going_down
+            
+            current_row += 1 if going_down else -1
+        
+        # Join all rows into final string
+        return "".join(rows)
